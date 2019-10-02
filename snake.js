@@ -6,6 +6,8 @@ const ground = new Image();
 ground.src = "img/ground.png";
 const foodImg = new Image();
 foodImg.src = "img/food.png";
+const scoreImg = new Image();
+scoreImg.src = "img/score.png";
 
 const dead = new Audio();
 const eat = new Audio();
@@ -78,6 +80,7 @@ function draw() {
         ctx.strokeRect(snake[i].x, snake[i].y, box, box);
     }
     ctx.drawImage(foodImg, food.x, food.y);
+    ctx.drawImage(scoreImg,box*2,0);
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
