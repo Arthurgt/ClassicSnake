@@ -1,4 +1,4 @@
 # SnakeJavaScript
 Simple, classic snake game created in pure JavaScript and HTML.
 
-!(/img/readme1.png)
+!(https://github.com/Arthurgt/SnakeJavaScript/tree/master/img/readme1.png)
