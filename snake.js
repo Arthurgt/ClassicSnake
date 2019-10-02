@@ -36,6 +36,15 @@ function direction(event) {
     }   
 }
 
+function collision(head,array){
+    for( let i = 0; i<snake.length; i++){
+        if( head.x == array[i].x && head.y == array[i].y){
+            return true;
+        }
+    }
+    return false;
+}
+
 function draw() {
     ctx.drawImage(ground,0,0);
 
@@ -66,14 +75,15 @@ function draw() {
         snake.pop();
     }
 
-    if(snakeX < box || snakeX > 17 * box || snakeY < box || snakeY > 17*box){
-        clearInterval(game);
-    }
-
     let newHead = {
         x : snakeX,
         y : snakeY
     }
+
+    if(snakeX < box || snakeX > 17 * box || snakeY < box || snakeY > 17*box || collision(newHead,snake)){
+        clearInterval(game);
+    }
+
     snake.unshift(newHead);
 
     ctx.fillStyle = "white";
