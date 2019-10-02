@@ -15,11 +15,27 @@ snake[0] = {
 
 let food = {
     x : Math.floor(Math.random()*17+1) * box,
-    y : Math.floor(Math.random()*15+3) * box
+    y : Math.floor(Math.random()*15+1) * box
 
 }
 
 let score = 0;
+
+document.addEventListener("keydown",direction);
+
+let d;
+
+function direction(event) {
+    if(event.keyCode == 37){
+        d = "LEFT";
+    } else if (event.keyCode == 38){
+        d = "UP";
+    } else if (event.keyCode == 39){
+        d = "RIGHT";
+    } else if (event.keyCode == 40){
+        d = "DOWN";
+    }   
+}
 
 function draw() {
     ctx.drawImage(ground,0,0);
@@ -32,6 +48,10 @@ function draw() {
         ctx.strokeRect(snake[i].x, snake[i].y, box, box);
     }
     ctx.drawImage(foodImg, food.x, food.y);
+
+    ctx.fillStyle = "white";
+    ctx.font = "45px Changa one";
+    ctx.fillText(score,box,box);
 }
 
 let game = setInterval(draw,100);
