@@ -16,7 +16,6 @@ snake[0] = {
 let food = {
     x : Math.floor(Math.random()*17+1) * box,
     y : Math.floor(Math.random()*15+1) * box
-
 }
 
 let score = 0;
@@ -26,13 +25,13 @@ document.addEventListener("keydown",direction);
 let d;
 
 function direction(event) {
-    if(event.keyCode == 37){
+    if(event.keyCode == 37 && d != "RIGHT"){
         d = "LEFT";
-    } else if (event.keyCode == 38){
+    } else if (event.keyCode == 38 && d != "DOWN"){
         d = "UP";
-    } else if (event.keyCode == 39){
+    } else if (event.keyCode == 39 && d != "LEFT"){
         d = "RIGHT";
-    } else if (event.keyCode == 40){
+    } else if (event.keyCode == 40 && d != "UP"){
         d = "DOWN";
     }   
 }
@@ -56,7 +55,21 @@ function draw() {
     if( d == "UP") snakeY -= box;
     if( d == "RIGHT") snakeX += box;
     if( d == "DOWN") snakeY += box;
-    snake.pop(); 
+
+    if(snakeX == food.x && snakeY == food.y){
+        score++;
+        food = {
+            x : Math.floor(Math.random()*17+1) * box,
+            y : Math.floor(Math.random()*15+1) * box
+        }
+    }else{
+        snake.pop();
+    }
+
+    if(snakeX < box || snakeX > 17 * box || snakeY < box || snakeY > 17*box){
+        clearInterval(game);
+    }
+
     let newHead = {
         x : snakeX,
         y : snakeY
@@ -68,4 +81,4 @@ function draw() {
     ctx.fillText(score,box,box);
 }
 
-let game = setInterval(draw,100);
+let game = setInterval(draw,150);
